@@ -1,10 +1,21 @@
 pipeline {
-    agent any
-    stages {
-        stage('build') {
-            steps {
-                sh 'git status'
-            }
-        }
+	agent { label 'slave1' }
+	stages {
+	stage('GettingSystemReady') {
+	  steps{
+	  echo "*****SettingUp System to execute Below Stages******"
+	  sh 'yum install git -y'
+	  echo "****Installation Completed"
     }
-}
+	}
+    stage('SysInfo') {
+	  steps{
+	  echo "*****Welcome To Jenknis Declerative Pipeline******"
+	  sh 'whoami'
+	  sh 'who'
+	  sh 'uptime'
+    }
+	}
+	
+  }
+} 
